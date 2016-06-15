@@ -72,9 +72,21 @@ namespace Prvi_zadatak___I_level
             return studos;
         }
 
-        public static void display()
+        public static void display(List<Student> lista)
         {
-            Console.WriteLine("Pero Bero druga naredba će doći ovdje ");
+            int brojac = 0;      ////// ***
+            List<Student> abecedniPopis = new List<Student>();
+            abecedniPopis = lista.OrderBy(studenti => studenti.Prezime).ToList();  //"studenti" je varijabla, nema nikakvo posebno začenje 
+            //StudentIdGenerator.dodjelaRednog(abecedniPopis);           ////// ***
+
+            foreach (Student brucos in abecedniPopis)
+            {
+                brojac++;        ////// ***
+                StudentIdGenerator.rBr = brojac;       ////// ***
+                StudentIdGenerator.dodjelaRednog(brucos);       ////// ***
+                Console.WriteLine(brucos.redniBroj + " " + brucos.Prezime + ", " + brucos.Ime + " - prosjek: " + brucos.Prosjek);
+                StudentIdGenerator.Reset();          ////// ***
+            } 
         }
     }
 
@@ -146,8 +158,6 @@ namespace Prvi_zadatak___I_level
     {
         static void Main()
         {
-            int brojac = 0;      ////// ***
-
             List<Student> popisStudenata = new List<Student>();
 
             Console.WriteLine("Poštovani upravo se pokrenuli aplikaciju za izradu popisa studenata. \nAplikacija ima dvije naredbe pomoću kojih se upravlja njome. \nPrva naredba je 'ENLIST' koja služi za upisivanje studenata i njihovih podataka, \ndruga naredba je 'DISPLAY' koja vrši ispis upisanih studenata. \nMolimo unesite željenu naredbu:");
@@ -165,18 +175,7 @@ namespace Prvi_zadatak___I_level
             else if (naredba == "display")
             {
                 Console.WriteLine("Popis upisanih studenata:");
-                List<Student> abecedniPopis = new List<Student>();
-                abecedniPopis = popisStudenata.OrderBy(studenti => studenti.Prezime).ToList();  //"studenti" je varijabla, nema nikakvo posebno začenje 
-                //StudentIdGenerator.dodjelaRednog(abecedniPopis);           ////// ***
-
-                foreach (Student brucos in abecedniPopis)
-                {
-                    brojac++;        ////// ***
-                    StudentIdGenerator.rBr = brojac;       ////// ***
-                    StudentIdGenerator.dodjelaRednog(brucos);       ////// ***
-                    Console.WriteLine(brucos.redniBroj + " " + brucos.Prezime + ", " + brucos.Ime + " - prosjek: " + brucos.Prosjek);
-                    StudentIdGenerator.Reset();          ////// ***
-                }
+                Operations.display(popisStudenata);
             }
             else 
             {
