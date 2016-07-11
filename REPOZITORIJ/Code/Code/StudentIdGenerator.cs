@@ -6,54 +6,31 @@ using System.Threading.Tasks;
 
 namespace Code
 {
-    class StudentIdGenerator      ////// zakomentirati cijelu klasu za varijantu sa slanjem cijele liste u singleton (***)
+    public class StudentIdGenerator
     {
-        private static StudentIdGenerator redni;
+        private static StudentIdGenerator Generator;
 
-        protected StudentIdGenerator(Student studic)
-        {
-            studic.redniBroj = rBr.ToString() + ".";
+        protected StudentIdGenerator()
+        {            
         }
 
-        public static StudentIdGenerator dodjelaRednog(Student akademac)
+        public static StudentIdGenerator Stvaranje()
         {
-            if (redni == null)
+            if (Generator == null)
             {
-                redni = new StudentIdGenerator(akademac);
+                Generator = new StudentIdGenerator();
             }
 
-            return redni;
+            return Generator;
         }
-        public static void Reset()
+
+        public Guid Id
         {
-            redni = null;
+            get
+            {
+                Guid Ide = Guid.NewGuid();
+                return Ide;
+            }
         }
-        public static int rBr;
     }
-
-    //class StudentIdGenerator       ////// otkomentirati za varijantu sa slanjem cijele liste u singleton
-    //{
-    //    private static StudentIdGenerator redni;
-
-    //    protected StudentIdGenerator(List<Student> fakultet)
-    //    {
-    //        int i = 0;
-    //        foreach (Student osoba in fakultet)
-    //        {
-    //            i++;
-    //            osoba.redniBroj = i.ToString() + ".";
-    //        }
-
-    //    }
-
-    //    public static StudentIdGenerator dodjelaRednog(List<Student> studenti)
-    //    {
-    //        if (redni == null)
-    //        {
-    //            redni = new StudentIdGenerator(studenti);
-    //        }
-
-    //        return redni;
-    //    }
-    //}
 }

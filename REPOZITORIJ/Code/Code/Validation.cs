@@ -6,29 +6,31 @@ using System.Threading.Tasks;
 
 namespace Code
 {
-    static class Validation
+    public class Validation
     {
-        public static bool provjeraStringa(string pojam)
+        public string ProvjeraStringa(string Pojam)
         {
-            if (string.IsNullOrWhiteSpace(pojam))
+            if (string.IsNullOrWhiteSpace(Pojam))
             {
-                return false;
+                Console.WriteLine("Neispravan unos, molimo pokušajte ponovo.");
+                return string.Empty;
             }
             else
             {
-                return true;
+                return Pojam;                
             }
         }
-        public static bool provjeraBroja(string broj)
+        public string ProvjeraBroja(string Broj)
         {
-            double prosjek;
-            if (double.TryParse(broj, out prosjek) == true)
+            double Prosjek;
+            if (double.TryParse(Broj, out Prosjek))
             {
-                return true;
+                return Broj;
             }
             else
             {
-                return false;
+                Console.WriteLine("Neispravan unos, molimo pokušajte ponovo.");
+                return string.Empty;
             }
 
         }
