@@ -11,67 +11,72 @@ namespace Prvi_zadatak___I_level
     {
         static void Main()
         {
-            List<Student> PopisStudenata = new List<Student>();
+            List<Student> studentList = new List<Student>();
 
-            Console.WriteLine("Poštovani upravo se pokrenuli aplikaciju za izradu popisa studenata." 
-                + "\nAplikacija ima dvije naredbe pomoću kojih se upravlja njome. " 
-                + "\nPrva naredba je 'ENLIST' koja služi za upisivanje studenata i njihovih podataka," 
-                + " \ndruga naredba je 'DISPLAY' koja vrši ispis upisanih studenata. \nMolimo unesite željenu naredbu:");          
-            String Naredba = Console.ReadLine().Trim().ToLower();
+            Console.WriteLine("Poštovani upravo se pokrenuli aplikaciju za izradu popisa studenata.\nAplikacija ima dvije naredbe pomoću kojih se upravlja njome.\nPrva naredba je 'ENLIST' koja služi za upisivanje studenata i njihovih podataka,\ndruga naredba je 'DISPLAY' koja vrši ispis upisanih studenata. \nMolimo unesite željenu naredbu:");          
+            String input = Console.ReadLine().Trim().ToLower();
 
-            StudentIdGenerator Generator = StudentIdGenerator.Stvaranje();
+            StudentIdGenerator generator = StudentIdGenerator.making();
 
             do
             {
-                if (Naredba == Operations.Enlist)
+                if (input == Operations.enlist)
                 {
-                    Student Studos = new Student();
+                    Student academic = new Student();
 
-                    Studos.ID = Generator.Id;
-            
-                    Validation Provjera = new Validation();
+                    Validation checkUp = new Validation();
 
                     do
                     {
                         Console.WriteLine("Unesite ime studenta:");
-                        Studos.Ime = Console.ReadLine();
+                        academic.name = Console.ReadLine();
+                        if (checkUp.checkingString(academic.name) == true)
+                        {
+                            Console.WriteLine("Neispravan unos molimo pokušajte ponovo");
+                        }
                     }
-                    while (Provjera.ProvjeraStringa(Studos.Ime) == string.Empty);
+                    while (checkUp.checkingString(academic.name) == true);
 
                     do
                     {
                         Console.WriteLine("Unesite prezime studenta:");
-                        Studos.Prezime = Console.ReadLine();
+                        academic.surname = Console.ReadLine();
+                        if (checkUp.checkingString(academic.surname) == true)
+                        {
+                            Console.WriteLine("Neispravan unos molimo pokušajte ponovo");
+                        }
                     }
-                    while (Provjera.ProvjeraStringa(Studos.Prezime) == string.Empty);
+                    while (checkUp.checkingString(academic.surname) == true);
 
-                    string Prosjek;
+                    string average = "";
                     do
-                    {                    
+                    {
                         Console.WriteLine("Unesite prosjek studenta:");
-                        Prosjek = Console.ReadLine();
+                        average = Console.ReadLine().Replace(".",",");    //// zamjena točke(.) zarezom(,) jer se decimalni broj označava zarezom
+                        if (checkUp.checkingInt(average) == false)
+                        {
+                            Console.WriteLine("Neispravan unos molimo pokušajte ponovo");
+                        }
                     }
-                    while (Provjera.ProvjeraBroja(Prosjek) == string.Empty);
-                    Studos.Prosjek = Convert.ToDouble(Prosjek);
+                    while (checkUp.checkingInt(average) == false);
+                    academic.average = Convert.ToDouble(average);
 
-                    PopisStudenata.Add(Studos);
-                    Console.WriteLine("Ako želite dodati još jednog studenta na popis možete učiniti to naredbom 'ENLIST'," 
-                        + " \na ako želite pregledati popis studenata možete to učiniti naredbom 'DISPLAY':");
-                    Naredba = Console.ReadLine().Trim().ToLower();
+                    studentList.Add(academic);
+                    Console.WriteLine("Ako želite dodati još jednog studenta na popis možete učiniti to naredbom 'ENLIST',\na ako želite pregledati popis studenata možete to učiniti naredbom 'DISPLAY':");
+                    input = Console.ReadLine().Trim().ToLower();
                 }
-                    else if (Naredba != Operations.Display)
+                    else if (input != Operations.display)
                 {
                     Console.WriteLine("Pogrešan unos, molimo pokušajte ponovo:");
-                    Naredba = Console.ReadLine().Trim().ToLower();
+                    input = Console.ReadLine().Trim().ToLower();
                 }
             }
-            while(Naredba != Operations.Display);
+            while(input != Operations.display);
 
-            int Brojac = 0;      
-            List<Student> AbecedniPopis = new List<Student>();
-            AbecedniPopis = PopisStudenata.OrderBy(Studenti => Studenti.Prezime).ToList();
+            List<Student> alphabetList = new List<Student>();
+            alphabetList = studentList.OrderBy(students => students.surname).ToList();
 
-            if (PopisStudenata.Count > 0)
+            if (studentList.Count > 0)
             {
                 Console.WriteLine("Popis upisanih studenata:");
             }
@@ -80,12 +85,12 @@ namespace Prvi_zadatak___I_level
                 Console.WriteLine("Nema upisanih studenata.");            
             }
 
-            foreach (Student Brucos in AbecedniPopis)
+            foreach (Student graduate in alphabetList)
             {
-                Brojac++;
-                Console.WriteLine("{0}. {1}, {2} - prosjek: {3}", Brojac, Brucos.Prezime, Brucos.Ime, Brucos.Prosjek);
+                graduate.Id = generator.Id();
+                Console.WriteLine("{0}. {1}, {2} - prosjek: {3}", graduate.Id, graduate.surname, graduate.name, graduate.average);
             }
-            
+                        
             Console.WriteLine("Hvala Vam na korištenju naše aplikacije.");
             Console.ReadLine();
         }
