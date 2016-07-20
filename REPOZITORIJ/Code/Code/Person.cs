@@ -8,13 +8,13 @@ namespace Code
 {
     public abstract class Person
     {
-        protected Guid Id;
-        public Guid ID
+        protected int id;
+        public int Id
         {
-            get { return Id; }
-            set { Id = value; }
+            get { return id; }
+            set { id = value; }
         }
-        public string Ime { get; set; }
-        public string Prezime { get; set; }
+        public string name { get; set; }
+        public string surname { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace Code
 {
     public class Operations
     {
-        public const string Enlist = "enlist";
-        public const string Display = "display";      
+        public const string enlist = "enlist";
+        public const string display = "display";      
     }
 }

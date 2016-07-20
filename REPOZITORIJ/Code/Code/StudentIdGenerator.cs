@@ -8,29 +8,26 @@ namespace Code
 {
     public class StudentIdGenerator
     {
-        private static StudentIdGenerator Generator;
+        private static StudentIdGenerator generator;
 
         protected StudentIdGenerator()
         {            
         }
 
-        public static StudentIdGenerator Stvaranje()
+        public static StudentIdGenerator making()
         {
-            if (Generator == null)
+            if (generator == null)
             {
-                Generator = new StudentIdGenerator();
+                generator = new StudentIdGenerator();
             }
-
-            return Generator;
+            return generator;
         }
-
-        public Guid Id
+        
+        private int id;
+        public int Id()
         {
-            get
-            {
-                Guid Ide = Guid.NewGuid();
-                return Ide;
-            }
+            id = id + 1;
+            return id;
         }
     }
 }

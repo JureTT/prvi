@@ -8,31 +8,14 @@ namespace Code
 {
     public class Validation
     {
-        public string ProvjeraStringa(string Pojam)
+        public bool checkingString(string word)
         {
-            if (string.IsNullOrWhiteSpace(Pojam))
-            {
-                Console.WriteLine("Neispravan unos, molimo pokušajte ponovo.");
-                return string.Empty;
-            }
-            else
-            {
-                return Pojam;                
-            }
+            return string.IsNullOrWhiteSpace(word);
         }
-        public string ProvjeraBroja(string Broj)
+        public bool checkingInt (string number)
         {
-            double Prosjek;
-            if (double.TryParse(Broj, out Prosjek))
-            {
-                return Broj;
-            }
-            else
-            {
-                Console.WriteLine("Neispravan unos, molimo pokušajte ponovo.");
-                return string.Empty;
-            }
-
+            double average;
+            return double.TryParse(number, out average);
         }
     }
 }
