@@ -8,26 +8,26 @@ namespace Code
 {
     public class StudentIdGenerator
     {
-        private static StudentIdGenerator generator;
+        private static StudentIdGenerator Generator;
 
         protected StudentIdGenerator()
         {            
         }
 
-        public static StudentIdGenerator making()
+        public static StudentIdGenerator Making()
         {
-            if (generator == null)
+            if (Generator == null)
             {
-                generator = new StudentIdGenerator();
+                Generator = new StudentIdGenerator();
             }
-            return generator;
+            return Generator;
         }
         
-        private int id;
+        private int IdNumber;
         public int Id()
         {
-            id = id + 1;
-            return id;
+            IdNumber = IdNumber + 1;
+            return IdNumber;
         }
     }
 }

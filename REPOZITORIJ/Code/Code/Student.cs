@@ -8,6 +8,6 @@ namespace Code
 {
     public class Student : Person
     {
-        public double average { get; set; }
+        public double Average { get; set; }
     }
 }

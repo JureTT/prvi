@@ -8,11 +8,11 @@ namespace Code
 {
     public class Validation
     {
-        public bool checkingString(string word)
+        public bool StringLookUp(string word)
         {
             return string.IsNullOrWhiteSpace(word);
         }
-        public bool checkingInt (string number)
+        public bool IntegerLookUp (string number)
         {
             double average;
             return double.TryParse(number, out average);
