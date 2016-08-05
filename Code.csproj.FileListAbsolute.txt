@@ -1,5 +1,0 @@
-C:\Users\jurep_000\Documents\Visual Studio 2012\Projects\Code\Code\obj\Debug\Code.csprojResolveAssemblyReference.cache
-C:\Users\jurep_000\Documents\Visual Studio 2012\Projects\Code\Code\bin\Debug\Code.dll
-C:\Users\jurep_000\Documents\Visual Studio 2012\Projects\Code\Code\bin\Debug\Code.pdb
-C:\Users\jurep_000\Documents\Visual Studio 2012\Projects\Code\Code\obj\Debug\Code.dll
-C:\Users\jurep_000\Documents\Visual Studio 2012\Projects\Code\Code\obj\Debug\Code.pdb
