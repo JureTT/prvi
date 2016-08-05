@@ -14,7 +14,7 @@ namespace Code
         {            
         }
 
-        public static StudentIdGenerator Making()
+        public static StudentIdGenerator Instance()
         {
             if (Generator == null)
             {
@@ -23,11 +23,11 @@ namespace Code
             return Generator;
         }
         
-        private int IdNumber;
-        public int Id()
+        private int idNumber = 1000;
+        public int CreatingId()
         {
-            IdNumber = IdNumber + 1;
-            return IdNumber;
+            idNumber = idNumber + 1;
+            return idNumber;
         }
     }
 }

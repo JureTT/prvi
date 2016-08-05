@@ -15,18 +15,10 @@ namespace Code
             StudentList.Add(student);
         }
 
-        public int SortStudents()
+        public List<Student> SortStudents()
         {
             StudentList = StudentList.OrderBy(students => students.Surname).ToList();
-
-            StudentIdGenerator generator = StudentIdGenerator.Making();
-
-            foreach (Student graduate in StudentList)
-            {
-                graduate.Id = generator.Id();
-            }
-
-            return StudentList.Count();
+            return StudentList;
         }
 
         public Student RetriveStudent(int number)
